@@ -10,7 +10,8 @@ const getUser = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Directly compare the provided password with the stored password
+   
+    
     if (password !== user.password) {
       return res.status(401).json({ error: "Invalid credentials" });
     }
