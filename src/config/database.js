@@ -7,4 +7,13 @@ const pool = mysql.createPool({
   database: "nusantara",
 });
 
+pool.getConnection((err, connection) => {
+  if (err) {
+    console.error("Database connection failed: ", err.stack);
+    return;
+  }
+  console.log("Connected to database with threadId: ", connection.threadId);
+  connection.release();
+});
+
 module.exports = pool.promise();
