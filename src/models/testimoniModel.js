@@ -11,14 +11,20 @@ const getTestimoniById = async (id) => {
 };
 
 const createTestimoni = async (testimoni) => {
-  const { image_url } = testimoni;
-  const [result] = await db.query("INSERT INTO testimoni (image_url) VALUES (?)", [image_url]);
+  const { img_url, name, jabatan, univ, deskripsi } = testimoni;
+  const [result] = await db.query(
+    "INSERT INTO testimoni (img_url, name, jabatan, univ, deskripsi) VALUES (?, ?, ?, ?, ?)",
+    [img_url, name, jabatan, univ, deskripsi]
+  );
   return result.insertId;
 };
 
 const updateTestimoni = async (id, testimoni) => {
-  const { image_url } = testimoni;
-  const [result] = await db.query("UPDATE testimoni SET image_url = ? WHERE id = ?", [image_url, id]);
+  const { img_url, name, jabatan, univ, deskripsi } = testimoni;
+  const [result] = await db.query(
+    "UPDATE testimoni SET img_url = ?, name = ?, jabatan = ?, univ = ?, deskripsi = ? WHERE id = ?",
+    [img_url, name, jabatan, univ, deskripsi, id]
+  );
   return result;
 };
 
